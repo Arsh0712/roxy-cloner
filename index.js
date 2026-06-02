@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits } = require('discord.js-selfbot-v13');
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const https = require('https');
 
 const colors = {
@@ -430,12 +430,14 @@ class ServerCloner {
 const pendingOperations = new Map();
 
 const client = new Client({
-    intents: [
-        GatewayIntentBits.DirectMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-    ]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.DirectMessages,
+  ],
+  partials: [Partials.Channel] // needed for DMs to work
 });
 
 const botMessageIds = new Set();
