@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '/dev/null' }); // skip .env, use process.env
 const { Client, Intents } = require('discord.js-selfbot-v13');
 const https = require('https');
 
